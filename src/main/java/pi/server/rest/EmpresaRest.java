@@ -1,5 +1,6 @@
 package pi.server.rest;
 
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -15,11 +16,11 @@ public class EmpresaRest {
 
     @GET
     public String hello() {
-        return "empresa module started now...";
-    }
+        return "empresa module started now... yea";
+    } 
 
     @GET
-    @Path("/get")
+    @Path("/get") 
     @Produces(MediaType.APPLICATION_JSON)
     public Empresa get(@QueryParam("app") String app) {
         
@@ -29,8 +30,16 @@ public class EmpresaRest {
     }   
 
     @POST
-    public Empresa save(Empresa empresa){
-        empresa.commercial_name = empresa.commercial_name+"modificadito";
+    @Path("/save")
+    public Empresa save(Empresa empresa, @QueryParam("app") String app){
+        System.out.println("entrando al servicio");
+        empresa = new Empresa();
+        empresa.id = 1000;
+        empresa.activo = true;
+        empresa.allow_buy_without_stock =false;
+        empresa.app_name = "hola";
+        empresa.commercial_name = empresa.commercial_name+"modificadito denuevo :D";
+        empresa.app_name = app+"empresa 2 app name :D :D :D";
         return empresa;
     }
 }

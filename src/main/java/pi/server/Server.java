@@ -3,13 +3,19 @@ package pi.server;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.PrintWriter;
+import java.sql.ResultSet;
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
+import org.jboss.logmanager.handlers.SslTcpOutputStream;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.w3c.dom.Document;
+
+import io.vertx.core.json.JsonObject;
 
 
 public class Server {
@@ -110,5 +116,26 @@ public class Server {
         fw.close();
 
     }
+
+    public static JSONArray convertToJSON(ResultSet resultSet)
+            throws Exception {
+        JSONArray jsonArray = new JSONArray();
+        int total_rows = resultSet.getMetaData().getColumnCount();
+        System.out.println("length: " + total_rows);
+        while (resultSet.next()) {
+            
+            JSONObject obj = new JSONObject();
+            for (int i = 1; i <= total_rows; i++) {
+                String label = resultSet.getMetaData().getColumnLabel(i);
+                Object value = resultSet.getObject(i);
+                obj.put(label, value==null?JSONObject.NULL:value);
+            }
+            jsonArray.put(obj);
+        }
+        System.out.println("json array tostring: " + jsonArray.toString());
+        return jsonArray;
+    }
+
+    
     
 }

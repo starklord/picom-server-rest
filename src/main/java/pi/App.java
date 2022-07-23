@@ -1,16 +1,10 @@
 package pi;
 
-import java.io.File;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Scanner;
 import java.util.TimeZone;
 
 import io.quarkus.runtime.Quarkus;
 import io.quarkus.runtime.annotations.QuarkusMain;
 import pi.server.Server;
-import pi.service.model.efact.TxxxSituacion;
 import pi.service.util.db.CConexion;
 
 @QuarkusMain
@@ -20,7 +14,7 @@ public class App {
         try{
             initDB();
         }catch(Exception ex){
-            System.out.println("no se pudo cargar los datos iniciales...");
+            System.out.println("no se pudo cargar los datos iniciales..."); 
             System.out.println(ex.getMessage());
         }
         // Quarkus.run(MyApp.class, args);
