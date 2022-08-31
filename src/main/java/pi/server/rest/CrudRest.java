@@ -13,8 +13,8 @@ import pi.service.model.PiQuery;
 public class CrudRest {
 
     @GET
-    public String hello() {
-        return "hello :D";
+    public String hello() { 
+        return "hello :D"; 
     }
 
     @POST
