@@ -6,8 +6,6 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
-
-import io.quarkus.security.User;
 import pi.service.factory.Services;
 import pi.service.model.Meta;
 import pi.service.model.empresa.Empresa;
@@ -23,9 +21,13 @@ public class LoginRest {
     @GET
     @Path("/login") 
     @Produces(MediaType.APPLICATION_JSON)
-    public Meta get(@QueryParam("app") String app) {
-        Services.getLogin().login(app, user, pass, 0, 0)
-        return emp;
+    public Meta get(@QueryParam("app") String app,
+    @QueryParam("user") String user,
+    @QueryParam("pass") String pass,
+    @QueryParam("empresaId") int empresaId,
+    @QueryParam("sucursalId") int sucursalId
+    ) throws Exception{
+        return Services.getLogin().login(app, user, pass, empresaId,sucursalId);
     }   
 
     @PUT
