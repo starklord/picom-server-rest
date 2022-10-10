@@ -50,7 +50,7 @@ public class LoginServiceImpl implements LoginService {
 		String[] requiredCP = {"cargo","permiso"};
 		List<CargoPermiso> cargosPermisos = CRUD.list(app,CargoPermiso.class,requiredCP,"where b.id = " + empleado.cargo.id);
 		List<Permiso> permisos = new ArrayList<>();
-		boolean tienePermisoTodasSucursales = false;
+		boolean tienePermisoTodasSucursales = false; 
 		for(CargoPermiso cp:cargosPermisos){
 			permisos.add(cp.permiso);
 			if(cp.permiso.id == Util.PER_JEFE_ADMINISTRACION||cp.permiso.id == Util.PER_JEFE_VENTAS||cp.permiso.id == Util.PER_JEFE_LOGISTICA) {
