@@ -29,8 +29,8 @@ public class CrudRest {
     @Path("/list")
     @Produces(MediaType.APPLICATION_JSON) 
     public String listJson(PiQuery query) {
-        System.out.println("PiQuery: " + query.toString());
-        return Services.getCrud().list(query.app_name, query.query); 
+        System.out.println("PiQuery: " + query.toString()); 
+        return Services.getCrud().list(query.app_name, query.query);
     }
  
     @POST
@@ -43,8 +43,8 @@ public class CrudRest {
 
     @POST 
     @Path("/listjson") 
-    @Produces(MediaType.APPLICATION_JSON) 
-    public String list(PiQuery query) { 
+    @Produces(MediaType.APPLICATION_JSON)
+    public String list(PiQuery query) {
         System.out.println("PiQuery list: " + query.toString());  
         return Services.getCrud().listJson(query.app_name, query.query);  
     }

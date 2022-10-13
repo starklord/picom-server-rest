@@ -19,11 +19,11 @@ public class EmpresaServiceImpl implements EmpresaService {
 
 	@Override
 	public Empresa get(String app) {
-		String[] required = { "direccion", "direccion.persona", "documento_tipo_xdefecto" };
+		String[] required = { "direccion", "direccion.persona"};
 		Empresa empresa = null;
 		try {
 			List<Empresa> list = CRUD.list(app,table, required);
-			empresa = list.isEmpty() ? null : list.get(0);
+			empresa = list.isEmpty() ? null : list.get(0); 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

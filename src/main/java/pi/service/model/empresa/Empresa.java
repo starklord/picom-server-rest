@@ -21,7 +21,7 @@ public class Empresa implements Serializable {
 	public Boolean buy_fractionable; 
 	public Boolean is_fast_pos;
 	public Boolean require_sales_pin;
-	public DocumentoTipo documento_tipo_xdefecto;
+	public Integer documento_tipo_xdefecto;
 	public String app_name;
 	public String path_webapps;
 	public Boolean request_cobranzas_contado;

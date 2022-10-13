@@ -29,33 +29,34 @@ public class EmpleadoServiceImpl implements EmpleadoService {
 	public static String table = Empleado.class.getName();
 
 	@Override
-	public void cambiarClave(String app, int empleadoId, String claveActual, String claveNueva, String claveNuevaRep) throws Exception {
+	public String cambiarClave(String app, int empleadoId, String claveActual, String claveNueva, String claveNuevaRep) throws Exception {
 		
 		String claveEncriptada = Util.encrypt(claveNueva);
         
 		List<Empleado> list = CRUD.list(app,Empleado.class,"where id = " + empleadoId);
 		if(list.isEmpty()){
-			throw new Exception("No se han encontrado datos para el usuario seleccionado");
+			return "No se han encontrado datos para el usuario seleccionado";
 		}
 		Empleado emp = list.get(0);
         if(!emp.clave.equals(Util.encrypt(claveActual))){
-        	throw new Exception("La Clave Actual ingresada no coincide");
+        	return "La Clave Actual ingresada no coincide";
         }
 
-        if (claveActual.equals(claveNueva)) {
-            throw new Exception("La Clave Actual es igual a la Clave Nueva");
+        if (claveActual.equals(claveNueva)) { 
+            return "La Clave Actual es igual a la Clave Nueva";
         }
 
         if (!claveNueva.equals(claveNuevaRep)) {
-            throw new Exception("No ha repetido la Clave Nueva correctamente");
+            return "No ha repetido la Clave Nueva correctamente";
         }
 
         if (claveNueva.length() < 4) {
-            throw new Exception("La Clave Nueva debe tener 4 o mas caracteres");
+            return "La Clave Nueva debe tener 4 o mas caracteres";
         }
         try {
         	emp.clave = claveEncriptada;
         	CRUD.update(app,emp);
+			return Util.OK;
         } catch (Exception ex) {
             throw new Exception(ex.getMessage());
         }

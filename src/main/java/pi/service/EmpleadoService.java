@@ -19,7 +19,7 @@ import pi.service.model.rrhh.Permiso;
 
 public interface EmpleadoService{
 	
-	public void cambiarClave(String app, int empleadoId, String claveActual, String claveNueva, String claveNuevaRep) throws Exception;
+	public String cambiarClave(String app, int empleadoId, String claveActual, String claveNueva, String claveNuevaRep) throws Exception;
 	public List<Empleado> list(String app, int empresaId) throws Exception;
 	public List<Empleado> listUsuariosSistema(String app, int empresaId) throws Exception;
 	public List<Permiso> listPermisosSession(String app) throws Exception;

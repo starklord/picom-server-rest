@@ -12,7 +12,7 @@ import javax.ws.rs.core.MediaType;
 import pi.service.factory.Services;
 import pi.service.model.empresa.Empresa;
 
-@Path("/pi/empresa")
+@Path("/pi/EmpresaService")
 public class EmpresaRest {
 
     @GET
@@ -20,19 +20,17 @@ public class EmpresaRest {
         return "empresa module started now... yea yea yeaaaaa"; 
     } 
 
-    @GET
-    @Path("/get") 
+    @POST
+    @Path("/get")  
     @Produces(MediaType.APPLICATION_JSON)
-    public Empresa get(@QueryParam("app") String app) {
-        
+    public Empresa get(@QueryParam("app") String app) {  
         Empresa  emp = Services.getEmpresa().get(app);
-        System.out.println("empresa: " + emp.toString());
         return emp;
     }   
 
     @PUT
     @Path("/save")
-    public Empresa save(Empresa empresa, @QueryParam("app") String app){
+    public Empresa save(Empresa empresa, @QueryParam("app") String app){   
         System.out.println("entrando al servicio");
         empresa = new Empresa();
         empresa.id = 1000;

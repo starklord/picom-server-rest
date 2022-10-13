@@ -64,10 +64,10 @@ public class LoginServiceImpl implements LoginService {
 		}else {
 			SucursalServiceImpl sucursalService = new SucursalServiceImpl();
 			empleado.sucursal = sucursalService.get(app,sucursalId);
-		}
+		} 
 		
 		Meta meta = new Meta();
-		meta.sucursal = empleado.sucursal;
+		meta.sucursal = empleado.sucursal; 
 		meta.empresa = empleado.empresa;
 		meta.empleado = empleado;
 		meta.permisos = permisos;
